@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather App - Check a weather of any City</title>
+    <meta name="description" content="this is whether api which gives the information about whether in different city">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300&display=swap");
+
+        /* reset the webpage  */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            text-transform: capitalize;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        :root {
+            --primary-color: #edf2fc;
+            --secondary-color: #212121;
+        }
+
+        .dark-theme {
+            --primary-color: #000106;
+            --secondary-color: #fff;
+        }
+
+
+        /* this is for mainbox */
+        #mainbox {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* this is for navbar */
+        #navbar {
+            width: 100%;
+            top: 10px;
+            font-family: "Shantell Sans", cursive;
+        }
+
+        #navbar a {
+            padding: 10px;
+            margin: 0 50px;
+            animation: updown;
+            animation-iteration-count: infinite;
+            animation-duration: 3.5s;
+            animation-delay: 0.5s;
+            animation-timing-function: linear;
+        }
+
+        #moon {
+            cursor: pointer;
+            padding: 10px;
+            color: white;
+            font-size: 20px;
+        }
+
+
+        /* this is for whetherbox */
+        #whether {
+            width: 70%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        #tempcloud {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #tempcloud img {
+            width: 300px;
+            aspect-ratio: 1/1;
+        }
+
+        #photos{
+            z-index: 2;
+            opacity: 3;
+        }
+
+        #tempcloud .font {
+            font-size: 150px;
+        }
+
+        /* this is for heading */
+        #datecity {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #date {
+            font-size: 22px;
+        }
+
+        #city1,
+        #city2 {
+            font-size: 2.2rem;
+            text-align: center;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+
+        /* this is for inner class  */
+        .col {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            padding: 23px;
+        }
+
+        .bl {
+            border-left: 2px solid black;
+        }
+
+        .value {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* this is animation for navbar  */
+        @keyframes updown {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @media only screen and (max-width: 914px) {
+            .bl {
+                border-left: 0px solid white;
+            }
+        }
+
+        @media only screen and (max-width: 580px) {
+            #navbar a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container-fluid" id="mainbox">
+        <nav class="navbar bg-dark " id="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light">weatherApi</a>
+                <form class="d-flex" role="search" method="get" action="/search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        name="search" id="input">
+                    <button class="btn btn-outline-success" type="submit" id="btn">Search</button>
+                    <i class="fa-solid fa-moon" id="moon"></i>
+                </form>
+            </div>
+        </nav>
+        <div class="container" id="whether">
+            <div class="container-fluid" id="datecity">
+                <h5 id="city1">weather in <span id="city2">{%city%} [{%con%}]</span></h5>
+                <h3 id="date">monday 30 january</h3>
+            </div>
+            <div class="container text-center" id="imginfbox">
+                <div class="row">
+                    <div class="col" id="tempcloud">
+                        <img src="http://openweathermap.org/img/wn/{%img%}@2x.png" alt="photos cannot loaded" id="photos">
+                        <div class="degree">
+                            <h3>{%temp%}°C</h3>
+                            <h4>{%cloud%}</h4>
+                        </div>
+                    </div>
+                    <div class="col bl">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col value">
+                                    <h3>{%high%}°C</h3>
+                                    <h4>high</h4>
+                                </div>
+                                <div class="col value">
+                                    <h3>{%wind%}mps</h3>
+                                    <h4>wind</h4>
+                                </div>
+                                <div class="col value">
+                                    <h3 id="sunrise">{%rise%}</h3>
+                                    <h4>sunrise</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col value">
+                                    <h3>{%min%}°C</h3>
+                                    <h4>low</h4>
+                                </div>
+                                <div class="col value">
+                                    <h3>{%humidity%}%</h3>
+                                    <h4>humidity</h4>
+                                </div>
+                                <div class="col value">
+                                    <h3 id="sunset">{%set%}</h3>
+                                    <h4>sunset</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // this function is for date
+
+        function date() {
+            let date = new Date();
+            let todaydate = date.getDate();
+            return todaydate;
+        }
+
+        function day() {
+            let date = new Date();
+            let todayday = date.getDay();
+            let dayarray = [];
+            dayarray[0] = "sunday";
+            dayarray[1] = "monday";
+            dayarray[2] = "tuesday";
+            dayarray[3] = "wednesday";
+            dayarray[4] = "thursday";
+            dayarray[5] = "friday";
+            dayarray[6] = "saturday";
+            return dayarray[todayday];
+        }
+
+        function month() {
+            let date = new Date();
+            let todaymonth = date.getMonth();
+
+            let namemonth = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ];
+
+            return namemonth[todaymonth];
+        }
+
+        let todaydate = date();
+        let todayday = day();
+        let todaymonth = month();
+
+        // acccess the date Element
+        let dateele = document.getElementById("date");
+        dateele.innerHTML = `${todayday} ${todaydate} ${todaymonth}`;
+        console.log(dateele.innerHTML);
+
+
+        // this is for sunset 
+        let sunset = document.getElementById("sunset");
+        let unix = sunset.innerText;
+        let date1 = new Date(unix * 1000);
+        let hours1 = date1.getHours();
+        hours1 = (hours1 % 12) || 12;
+        let min1 = date1.getMinutes();
+
+        sunset.innerText = hours1 + ":" + min1;
+
+        // this is for sunrise 
+        let sunrise = document.getElementById("sunrise");
+        let unix1 = sunrise.innerText;
+        let date2 = new Date(unix1 * 1000);
+        let hours2 = date2.getHours();
+        hours2 = (hours2 % 12) || 12;
+        let min2 = date2.getMinutes();
+
+        sunrise.innerText = hours2 + ":" + min2;
+
+        let moon = document.getElementById("moon");
+
+        moon.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+
+            if (document.body.classList.contains("dark-theme")) {
+                moon.className = "fa-solid fa-sun";
+            }
+            else {
+                moon.className = "fa-solid fa-moon";
+            }
+        })
+
+    </script>
+
+</body>
+</html>

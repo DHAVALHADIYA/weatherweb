@@ -1,0 +1,36 @@
+{
+  "name": "weatherapp",
+  "homepage": "https://DHAVALHADIYA.github.io/WeatherApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "weatherapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "build": "npm run build-css && npm run build-js && npm run build-html",
+    "build-css": "node-sass-chokidar src/ -o public/ --watch --recursive",
+    "build-js": "browserify src/index.js -o public/bundle.js",
+    "build-html": "node build-html.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public"
+  },
+  "keywords": [
+    "weatherapi"
+  ],
+  "author": "dhaval hadiya",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "requests": "^0.3.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not < 2%"
+  ]
+}
