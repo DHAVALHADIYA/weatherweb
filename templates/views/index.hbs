@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- static path for a public folder is already set in app.js -->
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="main-content">
+      {{>header}}
+      <article class="widget">
+        <form class="weatherLocation">
+          <input
+            placeholder="Enter Location..."
+            type="text"
+            id="add"
+            autocomplete="off"
+          />
+          <button id="btn">Search</button>
+        </form>
+        <div class="weatherIcon"><i class="fa-solid fa-umbrella"></i></div>
+        <div class="weatherInfo">
+          <div class="temperature"><span></span></div>
+          <div class="description">
+            <div class="weatherCondition"></div>
+            <div class="place"></div>
+          </div>
+          <div class="suntime">
+            <div class="sunrise">
+              <span id="rise"></span>
+              <span id="sunrise"></span>
+            </div>
+            <div class="sunset">
+              <span id="set"></span>
+              <span id="sunset"></span>
+            </div>
+          </div>
+        </div>
+        <div class="dateday">
+          <div class="date">
+          </div>
+          <div class="day"></div>
+        </div>
+      </article>
+    </div>
+    <script src="js/app.js"></script>
+    <!-- absolute path -->
+  </body>
+</html>
+
+{{! handlebar is used for render data in form of  variable  }}
