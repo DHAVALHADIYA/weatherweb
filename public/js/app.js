@@ -5,6 +5,7 @@ var fetchWeather = "/weather";
 const weatherForm = document.querySelector("form");
 
 const weatherIcon = document.querySelector(".weatherIcon i");
+const weather_Icon = document.querySelector(".weather-icon");
 const weatherCondition = document.querySelector(".weatherCondition");
 const weatherLocation = document.getElementById("add");
 
@@ -76,12 +77,26 @@ weatherForm.addEventListener("submit", (event) => {
         set.textContent = "";
         rise.textContent = "";
       } else {
-        console.log();
-        if (data.description === "rain" || data.description === "fog") {
-          weatherIcon.className = "wi wi-day-" + data.description;
-        } else {
-          weatherIcon.className = "fa-solid fa-sun";
+        // here changes the icon based on description
+        if (data.description === "clear sky") {
+          weather_Icon.src = "icons/clear.png";
+        } else if (data.description.includes("clouds")) {
+          weather_Icon.src = "icons/clouds.png";
+        } else if (data.description.includes("rain")) {
+          weather_Icon.src = "icons/rain.png";
+        } else if (data.description.includes("snow")) {
+          weather_Icon.src = "icons/snow.png";
+        } else if (
+          data.description === "mist" ||
+          data.description === "haze" ||
+          data.description === "smoke" ||
+          data.description === "fog"
+        ) {
+          weather_Icon.src = "icons/mist.png";
+        } else if (data.description.includes("thunderstorm")) {
+          weather_Icon.src = "icons/drizzle.png";
         }
+
         locationElement.textContent = data.cityName + " , " + data.country;
         tempElement.textContent =
           (data.temperature - 273.5).toFixed(2) + String.fromCharCode(176);
@@ -118,4 +133,3 @@ weatherForm.addEventListener("submit", (event) => {
     });
   });
 });
-
