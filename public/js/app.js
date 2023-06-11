@@ -49,7 +49,7 @@ dateElement.textContent =
   // getdate() gives only date in format
   new Date().getDate() +
   " , " +
-  monthNames[new Date().getMonth()].substring(0, 4);
+  monthNames[new Date().getMonth()].substring(0, 3);
 
 weatherForm.addEventListener("submit", (event) => {
   // to prevent default behavior of form
@@ -58,6 +58,7 @@ weatherForm.addEventListener("submit", (event) => {
   locationElement.textContent = "Loading...";
   tempElement.textContent = "";
   weatherCondition.textContent = "";
+
   const locationApi = fetchWeather + "?address=" + weatherLocation.value;
 
   // to clear input value
@@ -117,3 +118,4 @@ weatherForm.addEventListener("submit", (event) => {
     });
   });
 });
+
