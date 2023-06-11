@@ -74,7 +74,7 @@ h2 {
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 2px 2px 1px rgb(254, 254, 254);
-  background: #2c271e;
+  background: #ff0051;
   color: #fff;
   font-weight: bold;
   border: 1px solid transparent;
@@ -84,6 +84,7 @@ h2 {
 #btn:hover {
   background-color: #f4dfdf;
   color: #080705;
+  box-shadow: 2px 2px 1px #7d364d;
 }
 
 .weatherLocation input:focus {

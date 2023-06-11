@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
 // here this endpoint is used for call api and fetch data from api here
 app.get("/weather", (req, res) => {
   const address = req.query.address;
+
   if (!address) {
     return res.send({
       error: "Enter City In Search Bar",
