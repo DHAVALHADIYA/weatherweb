@@ -333,6 +333,10 @@ p a {
   .widget {
     width: 350px;
   }
+
+   .widget .dateday {
+    font-size: 19px;
+  }
 }
 
 /* this media query for height */
